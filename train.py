@@ -1,6 +1,4 @@
-'''
-    This project is about prediction of the age of ancient DNA samples from their genomic data, and due to limited number of data, I had to use k-folding method.
-'''
+
 
 import pandas as pd
 from keras.models import Sequential, Dense, Dropout
@@ -8,7 +6,7 @@ from sklearn.model_selection import train_test_split
 import numpy as np
 from tensorflow.keras.optimizers import Adam
 
-df = pd.read_excel('/media/aro/New Volume/Flash/motivation letter/Sweden/Lunds University/Doctoral student in Biology/Position/new data/new data.xlsx')
+df = pd.read_excel('data.xlsx')
 
 
 target_column = ['DateBP']
@@ -69,6 +67,7 @@ for i in range(k):
     history = m.fit(train_data,train_target,epochs=num_epochs)
     val_mse,val_mae = m.evaluate(val_data,val_target, verbose=1)
     all_scores.append(val_mae)
+    
 print(all_scores)
 print(np.mean(all_scores))
 print('---------------------------')
